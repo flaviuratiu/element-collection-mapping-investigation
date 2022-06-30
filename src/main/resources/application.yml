@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    username: root
+    password: my-secret-pw
+    url: jdbc:mysql://localhost:3306/hibernate-test?useUnicode=true&characterEncoding=utf8&useSSL=false
+
+  liquibase.change-log: classpath:liquibase/master.xml
+
+logging.level:
+  net.ttddyy.dsproxy.listener: DEBUG
