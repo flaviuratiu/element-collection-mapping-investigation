@@ -13,8 +13,8 @@ public class QuestionResponse {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "question_response_ratings",
             joinColumns = {
-                    @JoinColumn(name = "user_id"),
-                    @JoinColumn(name = "task_id")
+                    @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+                    @JoinColumn(name = "task_id", referencedColumnName = "task_id")
             })
     @AttributeOverrides({
             @AttributeOverride(name = "optionId", column = @Column(name = "option_id", nullable = false)),

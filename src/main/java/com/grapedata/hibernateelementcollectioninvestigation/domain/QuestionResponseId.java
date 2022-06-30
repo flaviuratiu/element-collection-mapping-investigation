@@ -1,12 +1,15 @@
 package com.grapedata.hibernateelementcollectioninvestigation.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
 public class QuestionResponseId implements Serializable {
 
+    @Column(name = "user_id")
     private String userId;
+    @Column(name = "task_id")
     private String taskId;
 
     public QuestionResponseId(String userId, String taskId) {
