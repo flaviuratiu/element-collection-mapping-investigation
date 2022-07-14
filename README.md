@@ -40,4 +40,4 @@ and then executing step 5.
 - the embedded id properties need to be annotated with `@Column(name = "some_id")`
 - each `@JoinColumn` for the `@ElementCollection` should have both `name` and `referencedColumnName` specified.
 
-The fix can be tested from the `correct-mappings` branch.
+The fix can be tested from the `fix` branch.
