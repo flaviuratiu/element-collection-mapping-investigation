@@ -12,7 +12,8 @@ Incomplete mapping of join columns fails for manually inserted rows only.
 docker run --name mysql-temp -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=column-mapping-test -p 127.0.0.1:3306:3306 -d mysql:5.7
 ```
 2. Start the application.
-3. Execute `GET http://localhost:8080/question-responses/create` to create an initial row in the main table. (`GET` has been used here just so I can easily test even from a browser)
+3. Execute `GET http://localhost:8080/question-responses/create-without-element-collection` 
+to create an initial row in the main table. (`GET` has been used here just so I can easily test even from a browser)
 4. Execute the following sql, to manually insert a row in the element collection table:
 ```sql 
 INSERT INTO `column-mapping-test`.question_response_ratings
@@ -30,8 +31,10 @@ Step 5 should return the `QuestionResponse` (main entity) with the manually inse
 
 # Actual result:
 At step 5, the main entity is returned not including the element collection.
-Very interesting though, if one was to have the row inserted in the collection table by the service, the `GET` at step 5 would return the main entity with the element collection included.
-This can be tested with an empty db, by uncommenting line 31 in `QuestionResponseController` and skipping step 4.
+Very interesting though, if one was to have the row inserted in the collection table by the service, 
+the `GET` at step 5 would return the main entity with the element collection included.
+This can be tested, by executing `GET http://localhost:8080/question-responses/create-with-element-collection`
+and then executing step 5.
 
 # The fix:
 - the embedded id properties need to be annotated with `@Column(name = "some_id")`
